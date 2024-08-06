@@ -8,7 +8,7 @@ const connectDatabase = require("./config/connectDatabase");
 
 dotenv.config({ path: path.join(__dirname, "config", "config.env") });
 
-
+app.use(express.json())
 app.use("/api/v1/", products);
 app.use("/api/v1/", orders);
 connectDatabase()
