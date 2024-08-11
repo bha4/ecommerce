@@ -4,14 +4,16 @@ const dotenv = require("dotenv");
 const path = require("path");
 const products = require("./Routes/product");
 const orders = require("./Routes/order");
+const cors = require("cors")
 const connectDatabase = require("./config/connectDatabase");
 
 dotenv.config({ path: path.join(__dirname, "config", "config.env") });
-
+connectDatabase();
 app.use(express.json())
+app.use(cors())
 app.use("/api/v1/", products);
 app.use("/api/v1/", orders);
-connectDatabase()
+
 app.listen(process.env.PORT, () => {
   console.log(
     `Server listening to port ${process.env.PORT} in ${process.env.NODE_ENV} mode`
